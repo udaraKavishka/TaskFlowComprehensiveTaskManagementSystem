@@ -6,8 +6,8 @@ const config= require('../config/config.js');
 
 const connectDB = () => {
     mongoose.connect(config.mongodb_url, {
-        useNewUrlParser:true,
-        useUnifiedTopology:true,
+        // useNewUrlParser:true,
+        // useUnifiedTopology:true,
         // useCreateIndex:true,
         // useFindAndModify:false
     }).then(()=>{

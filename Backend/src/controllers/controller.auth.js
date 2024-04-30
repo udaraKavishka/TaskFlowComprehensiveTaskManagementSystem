@@ -78,29 +78,29 @@ const login = asyncHandler(async (req, res) => {
         })
 })
 
-// const userProfile = asyncHandler(async (req, res, next) => {
-//     const { id } = req.params;
+const userProfile = asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
 
-//     try {
-//         const verifyUser = await userModel.findOne({ userId: id })
-//         if (!verifyUser) {
-//             return res.status(403).json({
-//                 message: "user not found",
-//                 success: false,
-//             })
-//         } else {
-//             return res.status(200).json({
-//                 message: `user ${verifyUser.username}`,
-//                 success: true
-//             })
-//         }
-//     }
-//     catch (error) {
-//         return res.status(401).json({
-//             success: false,
-//             message: error.message,
-//         })
-//     }
-// });
+    try {
+        const verifyUser = await userModel.findOne({ userId: id })
+        if (!verifyUser) {
+            return res.status(403).json({
+                message: "user not found",
+                success: false,
+            })
+        } else {
+            return res.status(200).json({
+                message: `user ${verifyUser.username}`,
+                success: true
+            })
+        }
+    }
+    catch (error) {
+        return res.status(401).json({
+            success: false,
+            message: error.message,
+        })
+    }
+});
 
-module.exports={register,login};
+module.exports={register,login,userProfile};
