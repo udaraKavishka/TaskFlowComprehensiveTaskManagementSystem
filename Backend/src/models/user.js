@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const {schemaOptions}= require('../models/modelOptions.js')
-const bcrypt= require('bcrypt')
+// const bcrypt= require('bcrypt')
 
 const userSchema= new mongoose.Schema({
     userId:{

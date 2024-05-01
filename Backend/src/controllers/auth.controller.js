@@ -11,16 +11,13 @@ const register = asyncHandler(async (req, res) => {
 
     try {
             const userId = uuidv4()
-            bcrypt.hash(req.body.password, 10)
-                .then((hash) => {
+            bcrypt.hash(req.body.password, 10).then((hash) => {
                     const user = new userModel({
                         userId: userId,
                         username: username,
                         password: hash,
                     });
-
-                    user.save()
-                        .then((response) => {
+                    user.save().then((response) => {
                             return res.status(201).json({
                                 message: 'user successfully created!',
                                 result: response,
@@ -31,7 +28,6 @@ const register = asyncHandler(async (req, res) => {
                             res.status(500).json({ error: error,})
                         })
                 })
-        
     } catch (error) {
         return res.status(412).send({
             success: false,
@@ -72,11 +68,11 @@ const login = asyncHandler(async (req, res) => {
         })
         .catch((error) => {
             return res.status(401).json({
-                message: err.message,
+                message: error.message,
                 success: false
             })
         })
-})
+});
 
 const userProfile = asyncHandler(async (req, res, next) => {
     const { id } = req.params;

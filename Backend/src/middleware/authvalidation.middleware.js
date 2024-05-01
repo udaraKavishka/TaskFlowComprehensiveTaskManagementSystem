@@ -1,17 +1,15 @@
 const validator= require('../utils/validator.js');
 
-const regsiterValidation = async (req, res, next) => {
+const registerValidation = async (req, res, next) => {
     const validateRule = {
         "username": "required|string|min:3", 
         "password":"required|min:6",
-        
     }
 
     await validator(req.body, validateRule, {}, (err, status) =>{
         if (!status){
-            res.status(412)
-            .send({
-                success: false,
+            res.status(412).send({
+                    success: false,
                     message: 'Validation failed',
                     data: err
             })
@@ -30,13 +28,11 @@ const loginValidation = async (req, res, next) => {
 
     await validator(req.body, validateRule, {}, (err, status) =>{
         if (!status){
-            res.status(412)
-            .send({
+            res.status(412).send({
                 success: false,
                     message: 'Validation failed',
                     data: err
             })
-        
         } else {
             next();
         }
@@ -44,6 +40,6 @@ const loginValidation = async (req, res, next) => {
 }
 
 module.exports = {
-    regsiterValidation, 
+    registerValidation, 
     loginValidation
 }
