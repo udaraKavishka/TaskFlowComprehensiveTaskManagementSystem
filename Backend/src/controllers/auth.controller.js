@@ -8,7 +8,6 @@ const asyncHandler = require("express-async-handler");
 const register = asyncHandler(async (req, res) => {
 
     const { username,password} = req.body;
-
     try {
             const userId = uuidv4()
             bcrypt.hash(req.body.password, 10).then((hash) => {

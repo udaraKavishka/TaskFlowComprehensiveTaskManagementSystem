@@ -20,6 +20,3 @@ app.use('/api/auth',authRoutes);
 app.listen(config.port,() => {
     console.log(`Server is up at ${config.port}`);
 });
-
-
-
