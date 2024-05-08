@@ -15,6 +15,8 @@ app.use(express.urlencoded({extended: false}));
  connectDB.connectDB();
 
 app.use('/api/auth',authRoutes);
+// app.use('/api/v1', require('./src/routes'));  
+
 
 app.listen(port,() => {
     console.log(`Server is up at ${port}`);
