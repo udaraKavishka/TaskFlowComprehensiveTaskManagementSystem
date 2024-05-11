@@ -109,3 +109,32 @@ const updateBoard= async(req,res)=>{
         })
     }
 }
+
+
+const updateFavouritePosition= async(req,res)=>{
+    const {boards}= req.body
+    try {
+        for(const key in boards.reverse()){
+            const board= boards[key]
+            await Board.findByIdAndUpdate(board.id,{$set: { favouritePosition:key }})
+        }
+        res.status(200).json('updated Favourite ')
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message,
+            success: false
+        })
+    }
+}
+
+const getFavourites= async(req,res)=>{
+    try {
+        const favourites= await Board.find({user: req.user._id, favourite:true}).sort('-favouritePosition')
+        res.status(200).json(favourites)
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message,
+            success: false
+        })
+    }
+}
